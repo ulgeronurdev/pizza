@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" exact element={<Home />} />
         <Route path="siparis" element={<OrderPage />} />
         <Route path="tesekkurler" element={<SuccessPage />} />
       </Routes>
