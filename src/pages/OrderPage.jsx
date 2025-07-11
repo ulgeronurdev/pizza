@@ -16,7 +16,7 @@ export default function OrderPage() {
   const [notlar, setNotlar] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [adet, setAdet] = useState(1);
+  const [adet, setAdet] = useState(1); //başlangıç değeri 1 çünkü pizza siparişi
 
   // Kullanıcıya gösterdiğim pizza malzemeleri listesi
   const malzemeSecenekleri = [
@@ -162,20 +162,25 @@ export default function OrderPage() {
           {/* Malzeme Seçimi */}
           <fieldset>
             <legend>Ek Malzemeler (En Fazla 10 Adet Seçebilirsiniz):</legend>
-            {malzemeSecenekleri.map((m) => (
-              <label key={m}>
-                <input
-                  type="checkbox"
-                  checked={malzemeler.includes(m)}
-                  onChange={() => toggleMalzeme(m)}
-                  disabled={
-                    isSubmitting ||
-                    (malzemeler.length === 10 && !malzemeler.includes(m))
-                  }
-                />
-                {m}
-              </label>
-            ))}
+            {malzemeSecenekleri.map(
+              (
+                m // her biri için checkbox oluşturdum, toggle edilince ekle veya çıkar yaptım
+              ) => (
+                <label key={m}>
+                  <input
+                    type="checkbox"
+                    checked={malzemeler.includes(m)}
+                    onChange={() => toggleMalzeme(m)}
+                    disabled={
+                      // 10'dan fazla seçilmemesi için yaptım
+                      isSubmitting ||
+                      (malzemeler.length === 10 && !malzemeler.includes(m))
+                    }
+                  />
+                  {m}
+                </label>
+              )
+            )}
             {errors.malzemeler && (
               <small className="error">{errors.malzemeler}</small>
             )}

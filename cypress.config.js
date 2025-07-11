@@ -7,8 +7,6 @@ export default defineConfig({
     baseUrl: "http://localhost:5173",
     // Test dosyalarının konumu
     specPattern: "cypress/e2e/**/*.cy.js",
-    setupNodeEvents(on, config) {
-      // Gerekirse event listener ekleyebilirsin
-    },
+    setupNodeEvents(on, config) {},
   },
 });
