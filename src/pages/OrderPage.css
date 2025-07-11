@@ -1,0 +1,98 @@
+/* OrderPage.css */
+.order-page {
+  padding: 2rem;
+  background: #ce2829;
+  font-family: Arial, sans-serif;
+  margin-left: 540px;
+}
+
+.logo {
+  background-color: #ce2829;
+  justify-content: center;
+  display: flex;
+}
+.order-card {
+  max-width: 500px;
+  margin: auto;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  scale: 90%;
+}
+.order-card h2 {
+  text-align: center;
+  color: #d32f2f;
+}
+label,
+fieldset {
+  display: block;
+  margin: 0.75rem 0;
+}
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+textarea {
+  resize: vertical;
+}
+.error {
+  color: #d32f2f;
+  font-size: 0.875rem;
+}
+fieldset {
+  border: none;
+}
+fieldset legend {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+fieldset label {
+  display: inline-block;
+  width: 48%;
+  margin: 0.25rem 1%;
+}
+.order-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 0.75rem;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+.qty-control button {
+  background: #fbc02d;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.qty-control span {
+  margin: 0 1rem;
+  font-size: 1rem;
+}
+.totals div {
+  font-size: 0.9rem;
+  text-align: right;
+}
+.submit-button {
+  width: 100%;
+  background: #fbc02d;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.submit-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
