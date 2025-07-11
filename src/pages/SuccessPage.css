@@ -18,6 +18,9 @@
 .success-logo {
   margin-bottom: 32px;
 }
+.back-button {
+  margin-top: 50px;
+}
 
 .success-logo img {
   max-width: 200px; /* İsterseniz küçültüp büyütebilirsiniz */

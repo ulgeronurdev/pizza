@@ -1,4 +1,5 @@
 // OrderPage.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./OrderPage.css";
@@ -55,6 +56,13 @@ export default function OrderPage() {
 
   const total = ((basePrice + malzemeler.length * 5) * adet).toFixed(2);
 
+  const isValid =
+    isim.trim().length >= 3 && // isim en az 3 karakter
+    boyut !== "" && // boyut seçili
+    hamur.trim() !== "" && // hamur seçili
+    malzemeler.length >= 4 && // en az 4 malzeme
+    malzemeler.length <= 10;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
@@ -70,9 +78,11 @@ export default function OrderPage() {
       );
       console.log("Sipariş Özeti:", res.data);
 
+      // Başarı durumunda sadece yönlendir, alert yok
       navigate("/tesekkurler");
     } catch (err) {
       console.error(err);
+      // Hata varsa kullanıcıya bildir
       alert("Hata oluştu.");
     } finally {
       setIsSubmitting(false);
@@ -103,20 +113,23 @@ export default function OrderPage() {
             {errors.isim && <small className="error">{errors.isim}</small>}
           </label>
 
-          <label>
-            Boyut Seç:
-            <select
-              value={boyut}
-              onChange={(e) => setBoyut(e.target.value)}
-              disabled={isSubmitting}
-            >
-              <option value="">-- Seçiniz --</option>
-              <option value="Küçük">Küçük</option>
-              <option value="Orta">Orta</option>
-              <option value="Büyük">Büyük</option>
-            </select>
+          <fieldset className="size-fieldset">
+            <legend>Boyut Seç:</legend>
+            {["Küçük", "Orta", "Büyük"].map((size) => (
+              <label key={size} className="size-radio">
+                <input
+                  type="radio"
+                  name="boyut"
+                  value={size}
+                  checked={boyut === size}
+                  onChange={(e) => setBoyut(e.target.value)}
+                  disabled={isSubmitting}
+                />
+                {size}
+              </label>
+            ))}
             {errors.boyut && <small className="error">{errors.boyut}</small>}
-          </label>
+          </fieldset>
 
           <label>
             Hamur Seç:
@@ -132,7 +145,7 @@ export default function OrderPage() {
           </label>
 
           <fieldset>
-            <legend>Ek Malzemeler (Max 10):</legend>
+            <legend>Ek Malzemeler (En Fazla 10 Adet Seçebilirsiniz):</legend>
             {toppingOptions.map((m) => (
               <label key={m}>
                 <input
@@ -158,6 +171,7 @@ export default function OrderPage() {
               value={notlar}
               onChange={(e) => setNotlar(e.target.value)}
               disabled={isSubmitting}
+              placeholder="Siparişinizle ilgili not ekleyebilirsiniz.."
             />
           </label>
 
@@ -187,7 +201,7 @@ export default function OrderPage() {
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={!isValid || isSubmitting}
             className="submit-button"
           >
             SIPARIŞ VER

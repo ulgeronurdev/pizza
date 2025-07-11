@@ -6,6 +6,12 @@ import prettier from "eslint-config-prettier/flat";
 export default [
   js.configs.recommended,
   {
+    // Tarayıcı ortamını ve ECMAScript sürümünü tanımlayın
+    env: {
+      browser: true,
+      es2021: true,
+    },
+
     files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
     languageOptions: {
       ecmaVersion: "latest",
@@ -18,6 +24,8 @@ export default [
       globals: {
         fetch: "readonly",
         document: "readonly",
+        window: "readonly",
+        alert: "readonly", // alert global fonksiyonu
         __dirname: "readonly",
         console: "readonly",
         process: "readonly",
@@ -30,12 +38,15 @@ export default [
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      // özel kurallar buraya
+      // React ile ilgili kural kapatmaları
       "react/prop-types": "off",
       "react/react-in-jsx-scope": "off",
 
-      // no-unused-vars'ı warning yap
+      // Kullanılmayan değişkenler warning olsun
       "no-unused-vars": "warn",
+
+      // Tanımsız global uyarılarını kapat (alert gibi)
+      "no-undef": "off",
     },
     settings: {
       react: {
