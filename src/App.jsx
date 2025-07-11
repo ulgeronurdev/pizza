@@ -8,8 +8,8 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="siparis" element={<OrderPage />} />
-        <Route path="tesekkurler" element={<SuccessPage />} />
+        <Route path="/siparis" element={<OrderPage />} />
+        <Route path="/tesekkurler" element={<SuccessPage />} />
       </Routes>
     </Router>
   );

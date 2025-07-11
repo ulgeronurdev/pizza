@@ -1,6 +1,5 @@
 describe("Pizza Sipariş Formu", () => {
   beforeEach(() => {
-    // baseUrl ile ayarlanmış olduğundan sadece yol yazıyoruz
     cy.visit("/siparis");
   });
 
@@ -27,7 +26,7 @@ describe("Pizza Sipariş Formu", () => {
   it("Form gönderildiğinde API isteği atılmalı ve /tesekkurler sayfasına yönlendirilmeli", () => {
     // Zorunlu alanları doldur
     cy.get('input[type="text"]').type("Onur Ülger");
-    cy.get("select").first().select("Orta");
+    cy.get('input[type="radio"]').check("Orta");
     // En az 4 malzeme seçelim:
     ["Pepperoni", "Sosis", "Domates", "Mısır"].forEach((m) => {
       cy.contains("label", m)

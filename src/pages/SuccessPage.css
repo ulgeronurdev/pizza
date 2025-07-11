@@ -21,9 +21,13 @@
 .back-button {
   margin-top: 50px;
 }
+.back-button:hover {
+  color: white;
+  background-color: green;
+}
 
 .success-logo img {
-  max-width: 200px; /* İsterseniz küçültüp büyütebilirsiniz */
+  max-width: 200px;
   height: auto;
   position: relative;
   top: -200px;
