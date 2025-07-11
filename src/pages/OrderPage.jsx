@@ -13,7 +13,7 @@ export default function OrderPage() {
   const [boyut, setBoyut] = useState("");
   const [hamur, setHamur] = useState("Normal");
   const [malzemeler, setMalzemeler] = useState([]);
-  const [ozel, setOzel] = useState("");
+  const [notlar, setNotlar] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [adet, setAdet] = useState(1);
@@ -29,14 +29,14 @@ export default function OrderPage() {
     "Jalapeno",
     "Sarımsak",
     "Biber",
-    "Ananas",
-    "Kabak",
+    "Ekstra Peynir",
+    "Salam",
+    "Sucuk",
+    "Turşu",
   ];
-  const basePrice = 175.5;
+  const basePrice = 85.5;
 
-  useEffect(() => {
-    // herhangi bir ön yükleme gerekli ise
-  }, []);
+  useEffect(() => {}, []);
 
   const validate = () => {
     const errs = {};
@@ -65,7 +65,7 @@ export default function OrderPage() {
     try {
       const res = await axios.post(
         "https://reqres.in/api/pizza",
-        { isim, boyut, hamur, malzemeler, ozel, adet },
+        { isim, boyut, hamur, malzemeler, notlar, adet },
         { headers: { "x-api-key": "reqres-free-v1" } }
       );
       console.log("Sipariş Özeti:", res.data);
@@ -85,9 +85,15 @@ export default function OrderPage() {
         <div className="logo">
           <img src={logo} alt="Pizza Logo" />
         </div>
+        <div className="aciklama">
+          <p>
+            Frontent Dev olarak hala position:absolute kullanıyorsan bu çok acı
+            pizza tam sana göre.
+          </p>
+        </div>
         <form id="order-form" onSubmit={handleSubmit}>
           <label>
-            İsim: *
+            İsim:
             <input
               type="text"
               value={isim}
@@ -98,7 +104,7 @@ export default function OrderPage() {
           </label>
 
           <label>
-            Boyut Seç: *
+            Boyut Seç:
             <select
               value={boyut}
               onChange={(e) => setBoyut(e.target.value)}
@@ -113,13 +119,13 @@ export default function OrderPage() {
           </label>
 
           <label>
-            Hamur Seç: *
+            Hamur Seç:
             <select
               value={hamur}
               onChange={(e) => setHamur(e.target.value)}
               disabled={isSubmitting}
             >
-              <option>Normal</option>
+              <option>Normal Kenar</option>
               <option>İnce Kenar</option>
               <option>Kalın Kenar</option>
             </select>
@@ -149,8 +155,8 @@ export default function OrderPage() {
           <label>
             Sipariş Notu:
             <textarea
-              value={ozel}
-              onChange={(e) => setOzel(e.target.value)}
+              value={notlar}
+              onChange={(e) => setNotlar(e.target.value)}
               disabled={isSubmitting}
             />
           </label>
