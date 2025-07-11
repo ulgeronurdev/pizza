@@ -193,6 +193,29 @@ export default function OrderPage() {
           </label>
 
           {/* Toplam Fiyat ve Adet Kontrolü */}
+          <div className="qty-control">
+            <button
+              type="button"
+              onClick={() => setAdet((a) => Math.max(1, a - 1))}
+              disabled={isSubmitting}
+            >
+              -
+            </button>
+            <span>{adet}</span>
+            <button
+              type="button"
+              onClick={() => setAdet((a) => a + 1)}
+              disabled={isSubmitting}
+            >
+              +
+            </button>
+          </div>
+
+          <div className="totals">
+            <div>Ek Malzemeler: {(malzemeler.length * 5).toFixed(2)}₺</div>
+            <div>Toplam: {total}₺</div>
+          </div>
+
           <button
             type="submit"
             disabled={!isValid || isSubmitting}
