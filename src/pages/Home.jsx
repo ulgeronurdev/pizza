@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import homeBanner from "../../images/iteration-1-images/home-banner.png";

@@ -1,5 +1,4 @@
 // SuccessPage.jsx
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../images/iteration-1-images/logo.svg";
 import "./SuccessPage.css";
